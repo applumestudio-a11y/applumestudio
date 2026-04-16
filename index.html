@@ -1,0 +1,120 @@
+<!-- =======================
+APPLUME STUDIO PRO VERSION
+======================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applume Studio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-black text-white">
+
+<!-- HERO -->
+<section class="h-screen flex flex-col justify-center items-center text-center px-6">
+  <h1 class="text-4xl md:text-6xl font-semibold mb-6 tracking-tight">Welcome to Applume Studio</h1>
+  <p class="text-gray-400 max-w-xl mb-10">
+    Modern music production focused on high-quality beats and collaborations with emerging artists.
+  </p>
+
+  <div class="flex flex-col gap-4 w-full max-w-xs">
+    <a href="#artists" class="border border-white py-3 hover:bg-white hover:text-black transition">Artists</a>
+    <a href="#socials" class="border border-white py-3 hover:bg-white hover:text-black transition">Socials</a>
+    <a href="#works" class="border border-white py-3 hover:bg-white hover:text-black transition">Our Works</a>
+    <a href="#news" class="border border-white py-3 hover:bg-white hover:text-black transition">Latest News</a>
+  </div>
+</section>
+
+<!-- WORKS / RELEASES -->
+<section id="works" class="py-20 px-6 max-w-6xl mx-auto">
+  <h2 class="text-3xl mb-10">Releases</h2>
+
+  <div id="releases" class="grid md:grid-cols-3 gap-10"></div>
+</section>
+
+<!-- ARTISTS -->
+<section id="artists" class="py-20 px-6 max-w-5xl mx-auto">
+  <h2 class="text-3xl mb-10">Artists</h2>
+  <div id="artistsList" class="space-y-6"></div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="py-20 px-6 max-w-5xl mx-auto">
+  <h2 class="text-3xl mb-10">Latest News</h2>
+  <div id="newsList" class="space-y-6"></div>
+</section>
+
+<!-- SOCIALS -->
+<section id="socials" class="py-20 px-6 text-center">
+  <h2 class="text-3xl mb-10 tracking-tight">Socials</h2>
+
+  <div class="flex justify-center gap-8">
+
+    <!-- Instagram -->
+    <a href="https://instagram.com/applumestudio" target="_blank"
+       class="group w-16 h-16 flex items-center justify-center border border-white rounded-2xl transition transform hover:scale-110 hover:bg-white">
+      <svg class="w-7 h-7 text-white group-hover:text-black transition" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm4.25 5.5a4.75 4.75 0 1 0 0 9.5 4.75 4.75 0 0 0 0-9.5Zm6-1.75a1.25 1.25 0 1 0 0 2.5 1.25 1.25 0 0 0 0-2.5ZM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://youtube.com/@applumestudio" target="_blank"
+       class="group w-16 h-16 flex items-center justify-center border border-white rounded-2xl transition transform hover:scale-110 hover:bg-white">
+      <svg class="w-7 h-7 text-white group-hover:text-black transition" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.75 15.5v-7l6 3.5-6 3.5Z"/>
+      </svg>
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://tiktok.com/@applumestudio" target="_blank"
+       class="group w-16 h-16 flex items-center justify-center border border-white rounded-2xl transition transform hover:scale-110 hover:bg-white">
+      <svg class="w-7 h-7 text-white group-hover:text-black transition" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M21 8.5a7.5 7.5 0 0 1-4.5-1.5v6.7a5.2 5.2 0 1 1-5.2-5.2c.3 0 .6 0 .9.1v2.7a2.5 2.5 0 1 0 1.8 2.4V2h2.5a4.8 4.8 0 0 0 4.5 3v3.5Z"/>
+      </svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- SCRIPT (LOAD DATA) -->
+<script>
+async function loadReleases() {
+  try {
+    const res = await fetch('/content/works.json');
+    const data = await res.json();
+
+    const container = document.getElementById('releases');
+
+    data.forEach(item => {
+      const el = document.createElement('div');
+      el.className = "bg-gray-900 p-4 rounded-2xl hover:scale-105 transition";
+
+      el.innerHTML = `
+        <img src="${item.cover}" class="mb-4 rounded-xl" />
+        <h3 class="text-lg font-semibold">${item.title}</h3>
+        <p class="text-gray-400 mb-2">${item.artist}</p>
+        <a href="${item.link}" target="_blank" class="underline">Listen</a>
+      `;
+
+      container.appendChild(el);
+    });
+  } catch (e) {
+    console.log('No releases yet');
+  }
+}
+
+loadReleases();
+</script>
+
+</body>
+</html>
