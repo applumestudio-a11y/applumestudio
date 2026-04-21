@@ -9,7 +9,7 @@ collections:
   - name: "releases"
     label: "Releases"
     files:
-      - file: "content/works.json"
+      - file: "works.json"
         label: "All Releases"
         name: "releases"
         fields:
