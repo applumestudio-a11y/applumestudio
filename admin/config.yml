@@ -9,8 +9,8 @@ collections:
   - name: "releases"
     label: "Releases"
     files:
-      - file: "content/works.json"
-        label: "All Releases"
+      - file: "works.json"
+        label: "Releases Data"
         name: "releases"
         fields:
           - label: "Items"
